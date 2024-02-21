@@ -1,0 +1,166 @@
+name: spendly
+description: "Welcome to Spendly."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.6
+
+  #state management
+  get: ^4.6.0
+  
+  #(might use)
+  flutter_otp_text_field: ^1.1.1
+
+  #pdf and path provider
+  pdf: ^3.10.7
+  path_provider: ^2.1.1
+  syncfusion_flutter_pdfviewer: ^24.1.41
+  
+  #ui customizations
+  google_fonts: ^6.0.0
+  dots_indicator: ^2.1.1
+  flutter_svg: ^2.0.7
+  dotted_border: ^2.1.0
+  lottie: ^2.7.0
+  #for nice loadimg animation
+  loading_animation_widget: ^1.2.0+4
+  #flutter_speed_dial: ^7.0.0
+  animated_splash_screen: ^1.3.0
+  smooth_page_indicator: ^1.0.0+2
+  flutter_screenutil: ^5.9.0
+
+
+  #country pickers
+  country_code_picker: ^3.0.0
+  country_picker: ^2.0.22
+  currency_picker: ^2.0.20
+
+  #for launching urls, phone number and emails
+  url_launcher: ^6.1.14
+
+  #for local storage
+  get_storage: ^2.0.3
+
+  #date and time packages (very awesome packages)
+  calendar_date_picker2: ^0.5.3
+  duration_picker: ^1.1.1
+  #for converting date/time objects nicely including servertime stamps
+  date_time_format: ^2.0.1
+
+  #for network calls and jwt decoder
+  http: ^1.1.2
+  dio: ^5.4.0
+  jwt_decoder: ^2.0.1
+
+  #for google auth
+  google_sign_in: ^6.1.6
+  
+
+  #for images
+  cached_network_image: ^3.3.0
+  cloudinary: ^1.2.0
+  image_picker: ^1.0.7
+  #image_picker_web: ^3.1.1
+
+
+  #for generating qr codes
+  qr_flutter: ^4.1.0
+
+  #rating_bar indicator
+  flutter_rating_bar: ^4.0.1
+
+  #for sharing anything sharable
+  share_plus: ^7.2.1
+
+  #firebase apis
+  firebase_core: ^2.24.0
+  firebase_messaging: ^14.7.6
+  firebase_auth: ^4.15.0
+
+  #local notifications (Android & iOS)
+  flutter_local_notifications: ^16.3.2
+  
+  #websockets might use)
+  web_socket_channel: ^2.4.4
+
+
+dependency_overrides:
+  intl: ^0.18.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+
+flutter_launcher_icons:
+  #android: "launcher_icon"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/icon_logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/images/icon_logo.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/icon_logo.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/icon_logo.png"
+
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/svg/
