@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
+import 'package:spendly/views/mainpage/screen/mainpage.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
@@ -12,18 +13,18 @@ import 'package:get_storage/get_storage.dart';
 
 
 void main() async{
-  
+
   WidgetsFlutterBinding.ensureInitialized();
   //keep beneath this widgetflutterbinding widget
   //usePathUrlStrategy();
   
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      systemNavigationBarColor: AppColor.blackColor,
-      statusBarColor: AppColor.blackColor,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: AppColor.bgColor,
+      statusBarColor: AppColor.bgColor,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
   
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Spendly',
-        home: SizedBox()
+        home: MainPage()
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class AppColor {
 
-  static const Color mainColor = Color.fromRGBO(18,111,140, 0);
+  static const Color mainColor = Color.fromRGBO(18,111,140, 1);
   static const Color blackColor = Colors.black;
 
 
