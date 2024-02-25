@@ -10,7 +10,7 @@ class AppColor {
   static const Color blackColor = Colors.black;
 
 
-  static const Color bgColor = Color.fromRGBO(255, 255, 255, 1);
+  static const Color bgColor = Colors.white; //Color.fromRGBO(255, 255, 255, 1);
   static const Color whiteTextColor = Color.fromRGBO(255, 255, 255, 0.75);
   static const Color greyColor = Color.fromRGBO(248, 250, 250, 1);
   //static const Color blackColor = Color.fromRGBO(29, 46, 46, 1);

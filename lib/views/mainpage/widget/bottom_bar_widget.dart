@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:spendly/controllers/main_page_controller.dart';
+import 'package:spendly/controllers/main/main_page_controller.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 
 
@@ -29,7 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
       backgroundColor: AppColor.bgColor,
       selectedItemColor: AppColor.mainColor,
-      unselectedItemColor: AppColor.darkGreyColor,
+      unselectedItemColor: Colors.grey.withOpacity(0.8),
       items: controller.navBarsItems(),
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.selectedIndex,

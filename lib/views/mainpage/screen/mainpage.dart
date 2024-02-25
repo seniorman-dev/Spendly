@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spendly/controllers/main_page_controller.dart';
+import 'package:spendly/controllers/main/main_page_controller.dart';
 import '../widget/bottom_bar_widget.dart';
 
 

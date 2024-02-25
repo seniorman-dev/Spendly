@@ -107,12 +107,13 @@ dependencies:
   firebase_core: ^2.24.0
   firebase_messaging: ^14.7.6
   firebase_auth: ^4.15.0
+  cloud_firestore: ^4.15.5
 
   #local notifications (Android & iOS)
   flutter_local_notifications: ^16.3.2
   
   #websockets (might use)
-  web_socket_channel: ^2.4.4
+  web_socket_channel: ^2.4.3
 
 
 dependency_overrides:

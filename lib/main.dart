@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
+import 'package:spendly/views/auth/screen/onboarding/screen/onboarding_screen.dart';
 import 'package:spendly/views/mainpage/screen/mainpage.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -22,7 +23,7 @@ void main() async{
     SystemUiOverlayStyle(
       systemNavigationBarColor: AppColor.bgColor,
       statusBarColor: AppColor.bgColor,
-      statusBarBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Spendly',
-        home: MainPage()
+        home: OnBoardingPage(), //MainPage()
       ),
     );
   }
