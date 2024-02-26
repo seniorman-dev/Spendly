@@ -7,7 +7,6 @@ import 'package:spendly/utils/colors/app_theme.dart';
 
 
 
-
 class Loader extends StatelessWidget {
   const Loader({super.key});
 

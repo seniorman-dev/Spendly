@@ -29,39 +29,37 @@ class _UtilsTextFieldState extends State<UtilsTextField> {
   Widget build(BuildContext context) {
     return Focus(
       onFocusChange: widget.onFocusChanged,
-      child: SizedBox(
-        height: 50.h,
-        child: TextFormField(
-          onChanged: widget.onChanged,
-          controller: widget.textController,
-          keyboardType: widget.keyboardType,
-          maxLines: 10,
-          minLines: 1,
-          autocorrect: true,
-          inputFormatters: const [],
-          enableSuggestions: true,
-          enableInteractiveSelection: true,
-          cursorColor: AppColor.blackColor,
-          //style: GoogleFonts.inter(color: AppColor.blackColor),
-          style: GoogleFonts.inter(color: AppColor.blackColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
-          textCapitalization: TextCapitalization.sentences,
-          textInputAction: widget.textInputAction,          
-          scrollPhysics: const BouncingScrollPhysics(),
-          decoration: InputDecoration(        
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none, // Remove the border
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.greyColor), // Set the color you prefer
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.greyColor), // Set the color you prefer
-            ),
-            fillColor: AppColor.bgColor,     
-            labelText: widget.hintText,
-            //labelStyle: GoogleFonts.inter(color: AppColor.textGreyColor, fontSize: 16.sp),
-            labelStyle: GoogleFonts.inter(color: AppColor.textGreyColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
+      child: TextFormField(
+        onChanged: widget.onChanged,
+        controller: widget.textController,
+        keyboardType: widget.keyboardType,
+        maxLines: 2,
+        minLines: 1,
+        autocorrect: true,
+        inputFormatters: const [],
+        enableSuggestions: true,
+        enableInteractiveSelection: true,
+        cursorColor: AppColor.blackColor,
+        //style: GoogleFonts.inter(color: AppColor.blackColor),
+        style: GoogleFonts.inter(color: AppColor.blackColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
+        textCapitalization: TextCapitalization.sentences,
+        textInputAction: widget.textInputAction,          
+        scrollPhysics: const BouncingScrollPhysics(),
+        decoration: InputDecoration(     
+          contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),   
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.greyColor), // Set the color you prefer
           ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.greyColor), // Set the color you prefer
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.greyColor), // Set the color you prefer
+          ),
+          fillColor: AppColor.bgColor,     
+          hintText: widget.hintText,
+          //labelStyle: GoogleFonts.inter(color: AppColor.textGreyColor, fontSize: 16.sp),
+          hintStyle: GoogleFonts.inter(color: AppColor.textGreyColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
         ),
       ),
     );

@@ -7,8 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:spendly/controllers/auth/auth_controller.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/utils/components/rebranded_reusable_button.dart';
-import 'package:spendly/views/auth/screen/login/widget/auth_fields.dart';
-import 'package:spendly/views/auth/screen/login/widget/login_with_google.dart';
+import 'package:spendly/views/auth/screen/register/register_screen.dart';
+import 'package:spendly/views/auth/screen/widget/auth_fields.dart';
+import 'package:spendly/views/auth/screen/widget/login_with_google.dart';
 
 
 
@@ -36,7 +37,7 @@ class LoginPage extends StatelessWidget {
             Center(
               child: SvgPicture.asset(
                 'assets/svg/login.svg',
-                height: 230.h, //280.h,
+                height: 260.h, //280.h,
                 //width: 450.w,
               ),
             ),
@@ -142,6 +143,7 @@ class LoginPage extends StatelessWidget {
                     },
                     onTextButton: () {
                       //Get.offUntil(GetPageRoute(page: () => RegisterPage()), (route) => false);
+                      Get.to(() => RegisterPage());
                     },
                     firstText: "Don't have an account?",
                     lastText: "Create account",

@@ -5,7 +5,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:spendly/controllers/auth/auth_controller.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/utils/components/rebranded_reusable_button.dart';
-import 'package:spendly/views/auth/screen/login/screen/login_screen.dart';
+import 'package:spendly/views/auth/screen/login/login_screen.dart';
+
 
 
 

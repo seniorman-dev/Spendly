@@ -9,6 +9,8 @@ import 'package:spendly/utils/colors/app_theme.dart';
 
 
 
+
+
 class AuthCustomTextField extends StatefulWidget {
   const AuthCustomTextField({super.key,required this.onChanged, required this.hintText, required this.keyboardType, required this.textInputAction, required this.textController, this.onFocusChanged, required this.prefixIcon, this.validator,});
   final TextEditingController textController;
@@ -57,7 +59,7 @@ class _AuthCustomTextFieldState extends State<AuthCustomTextField> {
             borderRadius: BorderRadius.circular(20.r),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.mainColor,), // Set the color you prefer
+            borderSide: BorderSide(color: AppColor.greyColor,), // Set the color you prefer
             borderRadius: BorderRadius.circular(20.r),
           ),
           /*errorBorder: OutlineInputBorder(
@@ -76,6 +78,74 @@ class _AuthCustomTextFieldState extends State<AuthCustomTextField> {
     );
   }
 }
+
+
+class AuthPhoneNumberTextField extends StatefulWidget {
+  const AuthPhoneNumberTextField({super.key,required this.onChanged, required this.hintText, required this.keyboardType, required this.textInputAction, required this.textController, this.onFocusChanged, required this.countrycode,});
+  final TextEditingController textController;
+  final TextInputType keyboardType;
+  final String hintText;
+  final TextInputAction textInputAction;
+  final void Function(String)? onChanged;
+  final void Function(bool)? onFocusChanged;
+  final Widget countrycode;
+
+  @override
+  State<AuthPhoneNumberTextField> createState() => _AuthPhoneNumberTextFieldState();
+}
+
+class _AuthPhoneNumberTextFieldState extends State<AuthPhoneNumberTextField> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Focus(
+      onFocusChange: widget.onFocusChanged,
+      child: TextFormField(
+        onChanged: widget.onChanged,
+        controller: widget.textController,
+        keyboardType: widget.keyboardType,
+        maxLines: 2,
+        minLines: 1,
+        autocorrect: true,
+        inputFormatters: const [],
+        enableSuggestions: true,
+        enableInteractiveSelection: true,
+        cursorColor: AppColor.blackColor,
+        style: GoogleFonts.inter(color: AppColor.blackColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
+        textCapitalization: TextCapitalization.sentences,
+        textInputAction: widget.textInputAction,          
+        scrollPhysics: const BouncingScrollPhysics(),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w), // Adjust padding as needed        
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.greyColor,),
+            borderRadius: BorderRadius.circular(20.r),
+            // Remove the border
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.greyColor,), // Set the color you prefer
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.greyColor,), // Set the color you prefer
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          /*errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.redColor),
+            borderRadius: BorderRadius.circular(15.r),
+          ),
+          errorStyle: GoogleFonts.inter(color: AppColor.redColor, fontSize: 14.sp, fontWeight: FontWeight.w400),*/
+          filled: true,
+          fillColor: AppColor.greyColor, //.withOpacity(0.9),         
+          hintText: widget.hintText,
+          hintStyle: GoogleFonts.inter(color: AppColor.textGreyColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
+          prefixIcon: widget.countrycode,
+        ),
+      ),
+    );
+  }
+}
+
 
 
 //password textfiel
@@ -136,7 +206,7 @@ class _AuthPasswordTextFieldState extends State<AuthPasswordTextField> {
           hintStyle: GoogleFonts.inter(color: AppColor.textGreyColor, fontSize: 14.sp, fontWeight: FontWeight.w400),             
           prefixIcon: widget.prefixIcon,
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.mainColor), // Set the color you prefer
+            borderSide: BorderSide(color: AppColor.greyColor), // Set the color you prefer
             borderRadius: BorderRadius.circular(15.r),
           ),
           /*errorBorder: OutlineInputBorder(
