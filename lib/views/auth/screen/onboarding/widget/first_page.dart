@@ -25,21 +25,28 @@ class FirstPage extends StatelessWidget {
         children: [
           SvgPicture.asset(
             'assets/svg/savings.svg',
-            //height: 400,
-            //width: 450,
+            height: 330.h,
+            //width: 450.w,
           ),
-          SizedBox(height: 60.h,),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Text(
-              'Save money in naira and usd seamlessly \n  with awesome interests and best rates',
-              style: GoogleFonts.inter(
-                color: AppColor.darkGreyColor,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600
-              ),
+          SizedBox(height: 30.h,),
+          Text(
+            "Save money in Naira and \$USD seamlessly \n  with awesome interests and best rates",
+            style: GoogleFonts.inter(
+              color: AppColor.darkGreyColor,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600
             ),
-          ),        
+          ),
+          SizedBox(height: 20.h,),
+          Text(
+            'fctyyfyjyujyukgkjghhgjtfgghghjghjgfhjhgjfhgjxsdgsd\n                             fhgdfhjfgjgjh',
+            style: GoogleFonts.inter(
+              color: Colors.grey,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400
+            ),
+          ),
+
         ],
       ),
     );

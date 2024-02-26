@@ -18,7 +18,7 @@ import 'package:spendly/views/auth/screen/onboarding/widget/third_page.dart';
 class AuthController extends getx.GetxController {
 
 
-  //var isLoading = false.obs;
+  var isLoading = false.obs;
 
   //ONBOARDING SECTION//
   final List<Widget> pages = [
@@ -26,7 +26,25 @@ class AuthController extends getx.GetxController {
     const SecondPage(),
     const ThirdPage(),
   ];
-  //var isNavbarColorChanged = false;
+  
+  //LOGIN SECTION
+  final isObscure = false;
+  GlobalKey<FormState> loginFormKey =  GlobalKey<FormState>();
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
+
+
+
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    loginEmailController.dispose();
+    loginPasswordController.dispose();
+    super.dispose();
+  }
+  
 
 }
 

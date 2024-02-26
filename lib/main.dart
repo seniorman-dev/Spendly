@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Spendly',
-        home: OnBoardingPage(), //MainPage()
+        home: OnBoardingPage(), //LoginPage()
       ),
     );
   }

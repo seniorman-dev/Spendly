@@ -24,21 +24,29 @@ class SecondPage  extends StatelessWidget {
         children: [
           SvgPicture.asset(
             'assets/svg/dollar.svg',
-            //height: 400,
+            height: 330.h,
             //width: 450,
           ),
-          SizedBox(height: 60.h,),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Text(
-              'Explore flexible and secure investment\n        options that yields great ROIs',
-              style: GoogleFonts.inter(
-                color: AppColor.darkGreyColor,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600
-              ),
+          SizedBox(height: 30.h,),
+          Text(
+            'Explore flexible and secure investment\n        options that yields great ROIs',
+            style: GoogleFonts.inter(
+              color: AppColor.darkGreyColor,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600
             ),
-          ),        
+          ),
+        
+          SizedBox(height: 20.h,),
+          Text(
+            'fctyyfyjyujyukgkjghhgjtfgghghjghjgfhjhgjfhgjxsdgsd\n                                fhgdfhjfgjgjh',
+            style: GoogleFonts.inter(
+              color: Colors.grey,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400
+            ),
+          ),
+               
         ],
       ),
     );

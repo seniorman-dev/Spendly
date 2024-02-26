@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:spendly/controllers/auth/auth_controller.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/utils/components/rebranded_reusable_button.dart';
+import 'package:spendly/views/auth/screen/login/screen/login_screen.dart';
 
 
 
@@ -40,7 +41,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         SizedBox(height: 110.h), //100.h
         //PageView.builder() Widget
         SizedBox(
-          height: 445.h, //550
+          height: 550.h, //445.h
           width: size.width,  //double.infinity
           child: PageView.builder( 
             scrollDirection: Axis.horizontal,
@@ -58,7 +59,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             }
           ),
         ),
-        //SizedBox(height: 30),
+        SizedBox(height: 30),
         //SmoothPageIndicator
         SmoothPageIndicator(
           //activeIndex: activePage,
@@ -79,7 +80,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             type: WormType.normal,
           ),
         ),                  
-        SizedBox(height: 60.h),
+        //SizedBox(height: 20.h),
         //for the two buttons
         Padding(
           padding: EdgeInsets.symmetric(
@@ -89,12 +90,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 40.h),
+              SizedBox(height: 80.h),
               RebrandedReusableButton(
                 color: AppColor.mainColor, 
                 text: "Get Started", 
                 onPressed: () {
-                  //Get.to(() => LoginPage());
+                  Get.to(() => LoginPage());
                 }, 
                 textColor: AppColor.bgColor
               ),
