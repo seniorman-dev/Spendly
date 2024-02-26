@@ -65,7 +65,7 @@ class RegisterPage extends StatelessWidget {
                       color: Colors.grey,
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400
-                   ),
+                    ),
                   ),
                 ],
               ),
@@ -113,7 +113,7 @@ class RegisterPage extends StatelessWidget {
                   AuthCustomTextField(
                     onChanged: (val) {},
                     /*validator: (val) {
-                      return ""; //controller.validateLoginEmail(value: val!);
+                      return ""; //controller.validateRegisterEmail(value: val!);
                     },*/
                     hintText: "Your email address",
                     keyboardType: TextInputType.emailAddress,
@@ -139,7 +139,7 @@ class RegisterPage extends StatelessWidget {
 
                   AuthPhoneNumberTextField(
                     onChanged: (val) {},
-                    hintText: "Your mobile number",
+                    hintText: "Your phone number",
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
                     textController: controller.registerPhoneNumberController, 
@@ -165,9 +165,9 @@ class RegisterPage extends StatelessWidget {
                   AuthPasswordTextField(
                     onChanged: (val) {},
                     /*validator: (val) {
-                      return   ""; //controller.validateLoginPassword();
+                      return   ""; //controller.validateRegisterPassword();
                     },*/   
-                    hintText: "Enter password",
+                    hintText: "Enter your password",
                     keyboardType: TextInputType.visiblePassword,
                     textInputAction: TextInputAction.next,
                     textController: controller.registerPasswordController,
@@ -192,7 +192,7 @@ class RegisterPage extends StatelessWidget {
                   AuthPasswordTextField(
                     onChanged: (val) {},
                     /*validator: (val) {
-                      return   ""; //controller.validateLoginPassword();
+                      return   ""; //controller.validateRegisterConfirmPassword();
                     },*/   
                     hintText: "Re-enter your password",
                     keyboardType: TextInputType.visiblePassword,
@@ -206,27 +206,26 @@ class RegisterPage extends StatelessWidget {
                     ),                                                  
                   ),
                   
-
-                  SizedBox(height: 80.h),
-                  RebrandedReusableButton(
-                    color: AppColor.mainColor, 
-                    text: "Create account", 
-                    onPressed: () {}, 
-                    textColor: AppColor.bgColor
-                  ),
-                  SizedBox(height: 30.h),
-                  SignUpWithGoogleWidget(
-                    onGoogleSignIn: () {
-                      //authService.signInWithGoogle(context: context);
-                    },
-                    onTextButton: () {
-                      Get.to(() => LoginPage());
-                    },
-                    firstText: "Have an account?",
-                    lastText: "Login",
-                  ),
                 ],
               ),
+            ),
+            SizedBox(height: 80.h),
+            RebrandedReusableButton(
+              color: AppColor.mainColor, 
+              text: "Create account", 
+              onPressed: () {}, 
+              textColor: AppColor.bgColor
+            ),
+            SizedBox(height: 30.h),
+            SignUpWithGoogleWidget(
+              onGoogleSignIn: () {
+                //authService.signInWithGoogle(context: context);
+              },
+              onTextButton: () {
+                Get.back();
+              },
+              firstText: "Have an account?",
+              lastText: "Login",
             ),
           ],
         ),

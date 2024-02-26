@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:spendly/services/data_service/fcm_api/fcm_api.dart';
+import 'package:spendly/services/data_service/local_storage/local_storage.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/views/auth/screen/onboarding/screen/onboarding_screen.dart';
 import 'package:spendly/views/mainpage/screen/mainpage.dart';
@@ -10,6 +12,15 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+
+
+
+var controller = Get.put(FCMAPIController());
+//Top level non-anonymous function for FCM push notifications for background mode
+Future<void> backgroundHandler(RemoteMessage message) async {
+  debugPrint('Handling a background message ${message.data}');
+  controller.displayNotification(message);
+}
 
 
 
@@ -37,13 +48,31 @@ void main() async{
   //initialize get_storage
   await GetStorage.init() ;
 
+  //check for existing fcmtoken
+  var token = LocalStorage.getFCMToken();
+  print("my_FCMtoken: $token");
+
   runApp(const MyApp());
 }
 
 
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    //initialize firebase cloud messaging
+    controller.initFCM(backgroundHandler: backgroundHandler);
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override

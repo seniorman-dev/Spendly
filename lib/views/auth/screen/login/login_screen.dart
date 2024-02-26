@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:spendly/controllers/auth/auth_controller.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/utils/components/rebranded_reusable_button.dart';
+import 'package:spendly/views/auth/screen/forgot_password/forgot_password.dart';
 import 'package:spendly/views/auth/screen/register/register_screen.dart';
 import 'package:spendly/views/auth/screen/widget/auth_fields.dart';
 import 'package:spendly/views/auth/screen/widget/login_with_google.dart';
@@ -55,7 +57,7 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 30.h,),
             //Form and textfields
             Form(
-              key: controller.loginFormKey,
+              key:controller.loginFormKey,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,7 +118,7 @@ class LoginPage extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          //Get.to(() => ForgotPasswordPage());        
+                          Get.to(() => ForgotPasswordPage());        
                         },
                         child: Text(
                           "Forgot Password?",
@@ -129,7 +131,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60.h),
+                  SizedBox(height: 70.h),
                   RebrandedReusableButton(
                     color: AppColor.mainColor, 
                     text: "Login", 

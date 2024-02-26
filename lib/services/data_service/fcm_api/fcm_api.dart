@@ -17,7 +17,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class FCMAPIController extends getx.GetxController {
   
   //will use this for future purpose
-  Future<void> _sendNotification({
+  Future<void> sendNotification({
     required String targetUserToken,
     required String title,
     required String body
