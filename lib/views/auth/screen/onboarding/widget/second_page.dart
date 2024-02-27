@@ -29,7 +29,7 @@ class SecondPage  extends StatelessWidget {
           ),
           SizedBox(height: 30.h,),
           Text(
-            'Explore flexible and secure investment\n        options that yields great ROIs',
+            'Explore flexible and secure investment\n        options yielding to great ROIs',
             style: GoogleFonts.inter(
               color: AppColor.darkGreyColor,
               fontSize: 16.sp,

@@ -39,7 +39,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
     return Column(
       children: [        
-        SizedBox(height: 110.h), //100.h
+        SizedBox(height: 70.h), //110.h
         //PageView.builder() Widget
         SizedBox(
           height: 550.h, //445.h
@@ -96,7 +96,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 color: AppColor.mainColor, 
                 text: "Get Started", 
                 onPressed: () {
-                  Get.to(() => LoginPage());
+                  Get.offAll(() => LoginPage());
                 }, 
                 textColor: AppColor.bgColor
               ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' as getx;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spendly/controllers/auth/auth_controller.dart';
 import 'package:spendly/services/data_service/fcm_api/fcm_api.dart';
 import 'package:spendly/services/data_service/local_storage/local_storage.dart';
@@ -50,14 +52,18 @@ class AuthService extends getx.GetxController {
           await firestore
           .collection('users')
           .doc(userCredential.user!.uid)
+          .collection("profile")
+          .doc(userCredential.user!.uid)
           .set({
             'id': userCredential.user!.uid,
             'name': authController.registerNameController.text,
             'email': authController.registerEmailController.text,
             'password': authController.registerConfirmPasswordController.text,
-            'photo': 'photo_url',
+            'phone_number': authController.registerPhoneNumberController.text,
+            'photo': '',
             'fcm_token': FCMToken,
             'is_email_verified': false,
+            'account_created_from': "LOCAL",
             'created_at': Timestamp.now(),
           })
           .whenComplete(() {
@@ -230,6 +236,122 @@ class AuthService extends getx.GetxController {
         context: context, 
         message: "failed to send password reset link: $e", 
         backgroundColor: AppColor.redColor
+      );
+    }
+  }
+
+
+  //Login or Sign Up with Google
+  Future<void> signInWithGoogle({required BuildContext context}) async {
+    try {
+      final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']); // Add desired scopes
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser != null) {
+        isLoading.value = true;
+        print("Google fetched user successfully");
+        // User signed in successfully
+        // You can also fetch additional information if needed
+        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleAuth.idToken,
+          accessToken: googleAuth.accessToken
+        );
+        
+        UserCredential userCredential = await firebase.signInWithCredential(credential);
+        print("${userCredential.user!.displayName}");
+        print("${userCredential.user!.email}");
+        
+        //save to local storage for independent use
+        LocalStorage.saveUsername(userCredential.user!.displayName!);
+        LocalStorage.saveUserID(userCredential.user!.uid);
+        LocalStorage.saveEmail(userCredential.user!.email!);
+        //call firestore to set the  user
+        await firestore
+        .collection('users')
+        .doc(userCredential.user!.uid)
+        .collection("profile")
+        .doc(userCredential.user!.uid)
+        .set({
+          'id': userCredential.user!.uid,
+          'name': userCredential.user!.displayName,
+          'email': userCredential.user!.email,
+          'password': "google",
+          //leave it empty
+          'phone_number': userCredential.user!.phoneNumber ?? "",
+          'photo': userCredential.user!.photoURL ?? '',
+          'fcm_token': FCMToken,
+          'is_email_verified': true,
+          'account_created_from': "GOOGLE",
+          'created_at': Timestamp.now(),
+        })
+        .whenComplete(() {
+          isLoading.value = false;
+          showMySnackBar(
+            context: context,
+            backgroundColor: AppColor.darkGreenColor,
+            message: "signed in successfully"
+          );
+          getx.Get.offAll(() => const MainPage());
+        });
+
+      } 
+      else {
+        isLoading.value = false;
+        // User cancelled the sign-in process
+        print("Google Sign-In cancelled by the user");
+      }
+
+    }
+    on PlatformException catch (e) {
+      isLoading.value = false;
+      if (e.code == GoogleSignIn.kNetworkError) {
+        print(e.code);
+        String errorMessage = "A network error (such as timeout, interrupted connection or unreachable host) has occurred.";
+        showMySnackBar(
+          context: context,
+          backgroundColor: AppColor.redColor,
+          message: errorMessage
+        );
+      }
+      else if (e.code == GoogleSignIn.kSignInCanceledError) {
+        // User cancelled the sign-in process
+        print("Google Sign-In cancelled by the user");
+        print(e.code);
+        // Handle errors gracefully
+        showMySnackBar(
+          context: context,
+          backgroundColor: AppColor.redColor,
+          message: "Sign-In process terminated or cancelled"
+        );
+      }
+      else if (e.code == GoogleSignIn.kSignInFailedError) {
+        // User cancelled the sign-in process
+        print(e.code);
+        // Handle errors gracefully
+        showMySnackBar(
+          context: context,
+          backgroundColor: AppColor.redColor,
+          message: "Sign-In process failed"
+        );
+      }
+      else {        
+        String errorMessage = "Something went wrong.";
+        showMySnackBar(
+          context: context,
+          backgroundColor: AppColor.redColor,
+          message: errorMessage
+        );
+      }
+    }
+    catch (e, stackTrace) {
+      isLoading.value = false;
+      print("Error during Google Sign-In: $e => $stackTrace");
+      // Handle errors gracefully
+      showMySnackBar(
+        context: context,
+        backgroundColor: AppColor.redColor,
+        message: "error during Google Sign-In: $e => $stackTrace"
       );
     }
   }
