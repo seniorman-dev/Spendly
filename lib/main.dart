@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:spendly/services/data_service/auth_state/firebase_auth_state.dart';
 import 'package:spendly/services/data_service/fcm_api/fcm_api.dart';
 import 'package:spendly/services/data_service/local_storage/local_storage.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
@@ -85,7 +86,7 @@ class _MyAppState extends State<MyApp> {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Spendly',
-        home: OnBoardingPage(), //LoginPage()
+        home: FirebaseCheck(), //OnBoardingPage(), //LoginPage()
       ),
     );
   }

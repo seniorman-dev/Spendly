@@ -16,6 +16,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class FCMAPIController extends getx.GetxController {
   
+  
   //will use this for future purpose
   Future<void> sendNotification({
     required String targetUserToken,
@@ -25,7 +26,7 @@ class FCMAPIController extends getx.GetxController {
     try {
 
       // Replace 'YOUR_SERVER_KEY' with your actual FCM server key
-      String serverKey = 'YOUR_SERVER_KEY';
+      String serverKey = 'AAAArc7gdgI:APA91bGPue1_F73CORVO-xbL5WtlNOsEdWKq9M-wLTHkFd_mQoopi-e2cnaM-kF8CZQ391U0vI2MTtC6bso6btfw8T11T0cGJgfzdG9Kwh7FRjC57FcLcnNoZf-JNF_CC6oxZ2YUkIwg';
 
       // Construct the FCM endpoint URL
       String endpoint = 'https://fcm.googleapis.com/fcm/send';

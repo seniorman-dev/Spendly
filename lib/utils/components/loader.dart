@@ -35,3 +35,17 @@ class Loader2 extends StatelessWidget {
     );
   }
 }
+
+class ErrorLoader extends StatelessWidget {
+  const ErrorLoader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: LoadingAnimationWidget.waveDots( 
+        color: AppColor.redColor,
+        size: 45.r,
+      ),
+    );
+  }
+}

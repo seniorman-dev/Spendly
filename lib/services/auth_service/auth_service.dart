@@ -9,6 +9,7 @@ import 'package:spendly/services/data_service/fcm_api/fcm_api.dart';
 import 'package:spendly/services/data_service/local_storage/local_storage.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/utils/components/my_snackbar.dart';
+import 'package:spendly/views/auth/screen/login/login_screen.dart';
 import 'package:spendly/views/mainpage/screen/mainpage.dart';
 
 
@@ -27,18 +28,20 @@ class AuthService extends getx.GetxController {
   var FCMToken = LocalStorage.getFCMToken();
   var authController = getx.Get.put(AuthController());
   var fcmAPIController = getx.Get.put(FCMAPIController());
+  var isLoading = false.obs;
 
 
 
 
   //REGISTER USER
   Future<dynamic> registerUser({required BuildContext context}) async {
+    isLoading.value = true;
     try {
       if(authController.registerNameController.text.isNotEmpty && authController.registerEmailController.text.isNotEmpty && authController.registerPasswordController.text == authController.registerConfirmPasswordController.text && authController.registerPhoneNumberController.text.isNotEmpty) {
       
         UserCredential userCredential = await firebase.createUserWithEmailAndPassword(email: authController.registerEmailController.text, password: authController.registerPasswordController.text);
         if(userCredential.user != null) {
-
+          isLoading.value = false;
           //save to local storage for independent use
           LocalStorage.saveUsername(authController.registerNameController.text);
           LocalStorage.saveUserID(userCredential.user!.uid);
@@ -57,11 +60,11 @@ class AuthService extends getx.GetxController {
             'is_email_verified': false,
             'created_at': Timestamp.now(),
           })
-          .then((value) {
+          .whenComplete(() {
             //send push notification
             fcmAPIController.sendNotification(
               targetUserToken: FCMToken, 
-              title: "Account successfully created",
+              title: "Account created successfully",
               body: "Hey ${authController.registerNameController.text}, welcome to Spendly.", 
             );
             authController.registerNameController.clear();
@@ -74,6 +77,7 @@ class AuthService extends getx.GetxController {
         }
 
         else {
+          isLoading.value = false;
           return showMySnackBar(
             context: context, 
             message: "something went wrong", 
@@ -82,17 +86,19 @@ class AuthService extends getx.GetxController {
         }
       }
       else {
+        isLoading.value = false;
         return showMySnackBar(
           context: context, 
-          message: "invalid credentials", 
+          message: "fields must not be empty", 
           backgroundColor: AppColor.redColor
         );
       }
     } 
     on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       return showMySnackBar(
         context: context, 
-        message: "error: $e", 
+        message: "failed to register user: $e", 
         backgroundColor: AppColor.redColor
       );
     }
@@ -102,12 +108,13 @@ class AuthService extends getx.GetxController {
 
   //LOGIN USER
   Future<dynamic> loginUser({required BuildContext context}) async {
+    isLoading.value = true;
     try {
       if(authController.loginEmailController.text.isNotEmpty && authController.loginPasswordController.text.isNotEmpty) {
       
         UserCredential userCredential = await firebase.signInWithEmailAndPassword(email: authController.loginEmailController.text, password: authController.loginPasswordController.text);
         if(userCredential.user != null) {
-
+          isLoading.value = false;
           //get the snapshot data of a particular document in db
           DocumentSnapshot snapshot = await firestore
           .collection('users')
@@ -125,7 +132,7 @@ class AuthService extends getx.GetxController {
         
           return showMySnackBar(
             context: context, 
-            message: "log in successful", 
+            message: "login successful", 
             backgroundColor: AppColor.darkGreenColor
           ).whenComplete(() {
             //clear the text cotrollers
@@ -138,6 +145,7 @@ class AuthService extends getx.GetxController {
         }
 
         else {
+          isLoading.value = false;
           return showMySnackBar(
             context: context, 
             message: "something went wrong", 
@@ -146,21 +154,88 @@ class AuthService extends getx.GetxController {
         }
       }
       else {
+        isLoading.value = false;
         return showMySnackBar(
           context: context, 
-          message: "invalid credentials", 
+          message: "fields must not be empty", 
           backgroundColor: AppColor.redColor
         );
       }
     } 
     on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       return showMySnackBar(
         context: context, 
-        message: "error: $e", 
+        message: "failed to log user in: $e", 
         backgroundColor: AppColor.redColor
       );
     }
   }
+
+
+  //LOGOUT METHOD
+  Future<void> logOut({required BuildContext context}) async {
+    isLoading.value = true;
+    try { 
+      isLoading.value = false;
+      await firebase.signOut()
+      .whenComplete(() {
+        LocalStorage.deleteUserID();
+        LocalStorage.deleteUseremail();
+        LocalStorage.deleteUsername();
+        getx.Get.offAll(() => LoginPage());
+      });
+    } 
+    on FirebaseAuthException catch (e) {
+      isLoading.value = false;
+      return showMySnackBar(
+        context: context, 
+        message: "failed to log user out: $e", 
+        backgroundColor: AppColor.redColor
+      );
+    }
+  }
+
+  //ResetPassword Method
+  Future resetPassword ({
+    required String email,
+    required BuildContext context
+  }) async {
+    isLoading.value = true;
+    try {  
+      if(email.isNotEmpty) {
+        isLoading.value = false;
+        await firebase.sendPasswordResetEmail(email: email)
+        .whenComplete(() {
+          //send push notification
+          fcmAPIController.sendNotification(
+            targetUserToken: FCMToken, 
+            title: "Password reset link sent",
+            body: "Hi, your reset link has been sent. kindly check your email", 
+          );
+        });
+      }
+      else {
+        isLoading.value = false;
+        return showMySnackBar(
+          context: context, 
+          message: "email field must not be empty", 
+          backgroundColor: AppColor.redColor
+        );
+      }
+    } 
+    on FirebaseAuthException catch (e) {
+      isLoading.value = false;
+      return showMySnackBar(
+        context: context, 
+        message: "failed to send password reset link: $e", 
+        backgroundColor: AppColor.redColor
+      );
+    }
+  }
+
+
+
 
 
 }
