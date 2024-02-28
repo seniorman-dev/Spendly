@@ -5,9 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spendly/controllers/auth/auth_controller.dart';
+import 'package:spendly/services/auth_service/auth_service.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
+import 'package:spendly/utils/components/loader.dart';
 import 'package:spendly/utils/components/rebranded_reusable_button.dart';
-import 'package:spendly/views/auth/screen/widget/auth_fields.dart';
+import 'package:spendly/views/auth/widget/auth_fields.dart';
 
 
 
@@ -18,7 +20,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   //Dependency injection/Composition
   var controller = Get.put(AuthController());
-  //var authService = Get.put(AuthService());
+  var authService = Get.put(AuthService());
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +108,20 @@ class ForgotPasswordPage extends StatelessWidget {
                   
                   SizedBox(height: 100.h),
 
-                  RebrandedReusableButton(
-                    color: AppColor.mainColor, 
-                    text: "Send Link", 
-                    onPressed: () {}, 
-                    textColor: AppColor.bgColor
+                  Obx(
+                    () {
+                      return authService.isLoading.value ? Loader() : RebrandedReusableButton(
+                        color: AppColor.mainColor, 
+                        text: "Send Link", 
+                        onPressed: () {
+                          authService.resetPassword(
+                            email: controller.forgotPasswordEmailController.text, 
+                            context: context
+                          );
+                        }, 
+                        textColor: AppColor.bgColor
+                      );
+                    }
                   ),
                 
                 ],

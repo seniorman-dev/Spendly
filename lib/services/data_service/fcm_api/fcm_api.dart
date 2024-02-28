@@ -53,6 +53,7 @@ class FCMAPIController extends getx.GetxController {
 
       //Check if the request was successful
       if(res.statusCode == 200 || res.statusCode == 201) {
+        print('response status:  ${res.statusCode}');
         print('response body:  ${res.body}');
         print('Notification sent successfully to $targetUserToken');
       }

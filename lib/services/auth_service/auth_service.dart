@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -57,7 +60,7 @@ class AuthService extends getx.GetxController {
             'name': authController.registerNameController.text,
             'email': authController.registerEmailController.text,
             'password': authController.registerConfirmPasswordController.text,
-            'phone_number': authController.registerPhoneNumberController.text,
+            'phone_number': "${authController.phone_code.value} ${authController.registerPhoneNumberController.text}",
             'photo': '',
             'fcm_token': FCMToken,
             'is_email_verified': false,
@@ -70,7 +73,15 @@ class AuthService extends getx.GetxController {
               targetUserToken: FCMToken, 
               title: "Account created successfully",
               body: "Hey ${authController.registerNameController.text}, welcome to Spendly.", 
+            )
+            //save the notification information as a sub collection
+            .whenComplete(() => saveNotificationDetails(
+                context: context, 
+                title: "Account created successfully",
+                body: "Hey ${authController.registerNameController.text}, welcome to Spendly.", 
+              )
             );
+            //clear the controllers afterwards
             authController.registerNameController.clear();
             authController.registerEmailController.clear();
             authController.registerPasswordController.clear();
@@ -99,6 +110,14 @@ class AuthService extends getx.GetxController {
       }
     } 
     on FirebaseAuthException catch (e) {
+      isLoading.value = false;
+      return showMySnackBar(
+        context: context, 
+        message: "failed to register user (auth): $e", 
+        backgroundColor: AppColor.redColor
+      );
+    }
+    on FirebaseException catch (e) {
       isLoading.value = false;
       return showMySnackBar(
         context: context, 
@@ -170,7 +189,7 @@ class AuthService extends getx.GetxController {
       isLoading.value = false;
       return showMySnackBar(
         context: context, 
-        message: "failed to log user in: $e", 
+        message: "failed to log user in (auth): $e", 
         backgroundColor: AppColor.redColor
       );
     }
@@ -194,9 +213,37 @@ class AuthService extends getx.GetxController {
       isLoading.value = false;
       return showMySnackBar(
         context: context, 
-        message: "failed to log user out: $e", 
+        message: "failed to log user out (auth): $e", 
         backgroundColor: AppColor.redColor
       );
+    }
+  }
+
+  //SAVE NOTIFICATION TO DB METHOD
+  Future<void> saveNotificationDetails({
+    required BuildContext context,
+    required String title,
+    required String body
+  }) async {
+    int randNum = Random().nextInt(2000000);
+    Map<String, dynamic> payload = {
+      "title": title,
+      "body": body,
+      "created_at": Timestamp.now()
+    };
+    try { 
+
+      await firestore
+      .collection('users')
+      .doc(userId)
+      .collection('notifications')
+      .doc("$randNum")
+      .set(payload);
+      //.set(payload, SetOptions(merge: true));
+    } 
+    on FirebaseException catch (e, stacktrace) {
+      isLoading.value = false;
+      debugPrint('failed to save notification: $e => $stacktrace');
     }
   }
 
@@ -227,8 +274,16 @@ class AuthService extends getx.GetxController {
           backgroundColor: AppColor.redColor
         );
       }
-    } 
+    }
     on FirebaseAuthException catch (e) {
+      isLoading.value = false;
+      return showMySnackBar(
+        context: context, 
+        message: "failed to send password reset link (auth): $e", 
+        backgroundColor: AppColor.redColor
+      );
+    }
+    on FirebaseException catch (e) {
       isLoading.value = false;
       return showMySnackBar(
         context: context, 
