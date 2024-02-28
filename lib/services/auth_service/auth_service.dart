@@ -52,8 +52,6 @@ class AuthService extends getx.GetxController {
           await firestore
           .collection('users')
           .doc(userCredential.user!.uid)
-          .collection("profile")
-          .doc(userCredential.user!.uid)
           .set({
             'id': userCredential.user!.uid,
             'name': authController.registerNameController.text,
@@ -269,8 +267,6 @@ class AuthService extends getx.GetxController {
         //call firestore to set the  user
         await firestore
         .collection('users')
-        .doc(userCredential.user!.uid)
-        .collection("profile")
         .doc(userCredential.user!.uid)
         .set({
           'id': userCredential.user!.uid,
