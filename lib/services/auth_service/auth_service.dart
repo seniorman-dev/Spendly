@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -36,7 +35,7 @@ class AuthService extends getx.GetxController {
   var isLoading = false.obs;
 
 
-
+  //REGEX CHECKS
 
   //REGISTER USER
   Future<dynamic> registerUser({required BuildContext context}) async {
@@ -201,6 +200,10 @@ class AuthService extends getx.GetxController {
     isLoading.value = true;
     try { 
       isLoading.value = false;
+      //sign out with google
+      final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']); // Add desired scopes
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signOut();
+      //sign out normally
       await firebase.signOut()
       .whenComplete(() {
         LocalStorage.deleteUserID();
@@ -252,12 +255,12 @@ class AuthService extends getx.GetxController {
     required String email,
     required BuildContext context
   }) async {
-    isLoading.value = true;
     try {  
       if(email.isNotEmpty) {
-        isLoading.value = false;
+        isLoading.value = true;
         await firebase.sendPasswordResetEmail(email: email)
         .whenComplete(() {
+          isLoading.value = false;
           //send push notification
           fcmAPIController.sendNotification(
             targetUserToken: FCMToken, 
@@ -280,14 +283,6 @@ class AuthService extends getx.GetxController {
       return showMySnackBar(
         context: context, 
         message: "failed to send password reset link (auth): $e", 
-        backgroundColor: AppColor.redColor
-      );
-    }
-    on FirebaseException catch (e) {
-      isLoading.value = false;
-      return showMySnackBar(
-        context: context, 
-        message: "failed to send password reset link: $e", 
         backgroundColor: AppColor.redColor
       );
     }

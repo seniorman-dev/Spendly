@@ -110,14 +110,16 @@ class ForgotPasswordPage extends StatelessWidget {
 
                   Obx(
                     () {
-                      return authService.isLoading.value ? Loader() : RebrandedReusableButton(
+                      return authService.isLoading.value ? Loader2() : RebrandedReusableButton(
                         color: AppColor.mainColor, 
                         text: "Send Link", 
                         onPressed: () {
                           authService.resetPassword(
                             email: controller.forgotPasswordEmailController.text, 
                             context: context
-                          );
+                          ).whenComplete(() {
+                            controller.forgotPasswordEmailController.clear();
+                          });
                         }, 
                         textColor: AppColor.bgColor
                       );

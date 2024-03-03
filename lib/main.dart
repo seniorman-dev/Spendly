@@ -49,9 +49,16 @@ void main() async{
   //initialize get_storage
   await GetStorage.init() ;
 
+  //FCM Instance
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  //Get Unique FCM DEVICE TOKEN AND SAVE TO GETSTORAGE()
+  String? token = await messaging.getToken();
+  await LocalStorage.saveFCMToken(token!);
+
   //check for existing fcmtoken
-  var token = LocalStorage.getFCMToken();
-  print("my_FCMtoken: $token");
+  var token_up = LocalStorage.getFCMToken();
+  print("my_FCMtoken: $token_up");
 
   runApp(const MyApp());
 }

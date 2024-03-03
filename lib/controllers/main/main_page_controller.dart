@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' as getx;
+import 'package:spendly/views/home/screen/home_screen.dart';
 
 
 
@@ -13,7 +14,7 @@ class MainPageController extends getx.GetxController {
 
   //widget options
   final List<Widget> widgetOptions = <Widget>[
-    SizedBox(),
+    HomePage(),
     SizedBox(),
     SizedBox(),
     SizedBox(),
