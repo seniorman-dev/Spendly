@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' as getx;
 import 'package:spendly/views/home/screen/home_screen.dart';
+import 'package:spendly/views/send/screen/send_page.dart';
 
 
 
@@ -15,7 +16,7 @@ class MainPageController extends getx.GetxController {
   //widget options
   final List<Widget> widgetOptions = <Widget>[
     HomePage(),
-    SizedBox(),
+    SendPage(),
     SizedBox(),
     SizedBox(),
   ];
@@ -34,18 +35,26 @@ class MainPageController extends getx.GetxController {
         label: 'Home',
       ),
       BottomNavigationBarItem(
-        activeIcon: Icon(CupertinoIcons.paperplane_fill),
-        icon: Icon(CupertinoIcons.paperplane),
+        activeIcon: Icon(CupertinoIcons.location_fill),
+        icon: Icon(CupertinoIcons.location),
         label: 'Send',
       ),
       BottomNavigationBarItem(
-        activeIcon: Icon(Icons.trending_up_rounded),
-        icon: Icon(Icons.trending_up_rounded),
+        activeIcon: Icon(
+          CupertinoIcons.graph_square_fill,
+        ),
+        icon: Icon(
+          CupertinoIcons.graph_square
+        ),
         label: 'Invest',
       ),
       BottomNavigationBarItem(
-        activeIcon: Icon(Icons.space_dashboard_rounded),
-        icon: Icon(Icons.space_dashboard_outlined),
+        activeIcon: Icon(
+          CupertinoIcons.rectangle_3_offgrid_fill
+        ),
+        icon: Icon(
+          CupertinoIcons.rectangle_3_offgrid
+        ),
         label: 'More',
       ),
     ];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spendly/controllers/main/main_page_controller.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
@@ -33,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: controller.navBarsItems(),
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.selectedIndex,
-      iconSize: 29,
+      iconSize: 28.r,
       onTap: widget.onItemTapped,
       elevation: 8, //5,
       selectedLabelStyle: GoogleFonts.inter(),
