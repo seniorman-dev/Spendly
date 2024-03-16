@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' as getx;
 import 'package:spendly/views/home/screen/home_screen.dart';
+import 'package:spendly/views/invest/screen/investment.dart';
 import 'package:spendly/views/send/screen/send_page.dart';
 
 
@@ -17,7 +18,7 @@ class MainPageController extends getx.GetxController {
   final List<Widget> widgetOptions = <Widget>[
     HomePage(),
     SendPage(),
-    SizedBox(),
+    InvestPage(),
     SizedBox(),
   ];
 

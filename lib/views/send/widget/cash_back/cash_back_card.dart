@@ -20,7 +20,6 @@ class CashbackCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         decoration: BoxDecoration(
           color: AppColor.mainColor.withOpacity(0.1), //Colors.transparent,
-
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Column(
@@ -29,7 +28,8 @@ class CashbackCard extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  color: AppColor.mainColor,
+                  //color: AppColor.mainColor,
+                  color: AppColor.blackColor,
                   CupertinoIcons.chevron_right_2,
                   size: 30.r,
                 ),
@@ -37,7 +37,8 @@ class CashbackCard extends StatelessWidget {
                 Text(
                   'Cashback Balance',
                   style: GoogleFonts.inter(
-                    color: AppColor.blackColor, //.withOpacity(0.2),
+                    //color: AppColor.blackColor,
+                    color: AppColor.darkGreyColor,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500
                   ),

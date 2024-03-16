@@ -31,12 +31,11 @@ class WalletCard extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             colors: [
-              Color.fromARGB(255, 8, 123, 158),
+              AppColor.mainColor,
+              //Color.fromARGB(255, 8, 123, 158),
               //AppColor.mainColor.withOpacity(0.4),
               //AppColor.mainColor,
               Color.fromARGB(255, 8, 123, 158),
-              Color.fromARGB(255, 8, 123, 158),
-              AppColor.mainColor,
             ]
           )
         ),

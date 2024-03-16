@@ -7,6 +7,11 @@ import 'package:spendly/utils/colors/app_theme.dart';
 
 
 
+
+
+
+
+
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key, required this.profilePic, required this.userName, required this.onNotificationPressed});
   final String profilePic;

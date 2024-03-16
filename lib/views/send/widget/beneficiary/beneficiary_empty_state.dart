@@ -6,19 +6,21 @@ import 'package:spendly/utils/colors/app_theme.dart';
 
 
 
+
 class BeneficiaryEmtyState extends StatelessWidget {
   const BeneficiaryEmtyState({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: Container(
         alignment: Alignment.center,
         //height: 55.h,
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
         decoration: BoxDecoration(
           color: AppColor.mainColor,
+          //color: AppColor.mainColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Row(
@@ -26,6 +28,7 @@ class BeneficiaryEmtyState extends StatelessWidget {
           children: [
             Icon(
               CupertinoIcons.person_2_fill,
+              //color: AppColor.blackColor,
               color: AppColor.bgColor,
             ),
             SizedBox(width: 15.w,),
@@ -38,6 +41,7 @@ class BeneficiaryEmtyState extends StatelessWidget {
                     'Beneficiary',
                     style: GoogleFonts.inter(
                       color: AppColor.bgColor,
+                      //color: AppColor.blackColor,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold
                     ),
@@ -48,9 +52,10 @@ class BeneficiaryEmtyState extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "Put your favorite people in one place",
+                          "Put your favorite accounts all in one place",
                           style: GoogleFonts.inter(
                             color: AppColor.lightBgColor,
+                            //color: AppColor.darkGreyColor,
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w400
                           ),
@@ -67,13 +72,14 @@ class BeneficiaryEmtyState extends StatelessWidget {
                           //padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
                           decoration: BoxDecoration(
                             color: AppColor.lightNormalGreen,
+                            //color: AppColor.lightNormalBlue.withOpacity(0.2),
                             //border: Border.all(color: AppColor.bgColor),
                             borderRadius: BorderRadius.circular(6.r),
                           ),
                           child: Text(
                             '+ Add new',
                             style: GoogleFonts.inter(
-                              color: AppColor.lightBgColor,
+                              color: AppColor.bgColor,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w400
                             ),

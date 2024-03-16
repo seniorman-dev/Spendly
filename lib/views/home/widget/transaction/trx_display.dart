@@ -19,8 +19,8 @@ class TrxDisplay extends StatelessWidget {
       children: [
         Icon(
           index.isOdd
-          ?CupertinoIcons.arrow_up_right //arrow_down_left,
-          :CupertinoIcons.arrow_down_left,
+          ?CupertinoIcons.arrow_down_left //money in
+          :CupertinoIcons.arrow_up_right, //money out
           size: 24.r,
           color: index.isOdd ?
           AppColor.darkGreenColor //AppColor.redColor
