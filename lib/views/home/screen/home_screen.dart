@@ -106,7 +106,7 @@ class HomePage extends StatelessWidget {
                               
                             },
                             child: Text(
-                              'See more >',
+                              'See more',
                               style: GoogleFonts.inter(
                                 color: AppColor.lightNormalGreen,
                                 fontSize: 15.sp,

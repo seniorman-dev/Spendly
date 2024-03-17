@@ -49,14 +49,14 @@ class SendPage extends StatelessWidget {
                       Icon(
                         CupertinoIcons.info_circle,
                         size: 24.r,
-                        color: AppColor.darkGreyColor,
+                        color: AppColor.textGreyColor,
                       ),
                       SizedBox(width: 10.w,),
                       Expanded(
                         child: Text(
                           'You get up to N100 cashback on every bill payment from N2,000 and above',
                           style: GoogleFonts.inter(
-                            color: AppColor.darkGreyColor, //.withOpacity(0.2),
+                            color: AppColor.textGreyColor, //.withOpacity(0.2),
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w400
                           ),

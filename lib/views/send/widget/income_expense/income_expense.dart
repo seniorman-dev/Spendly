@@ -22,15 +22,15 @@ class IncomeAndExpenseWidget extends StatelessWidget {
         children: [
           //INCOME WIDGET
           Expanded(
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {},
               child: Container(
                 alignment: Alignment.center,
                 //height: 55.h,
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                 decoration: BoxDecoration(
-                  //color: AppColor.mainColor.withOpacity(0.1),
-                  color: AppColor.normalGreen.withOpacity(0.2),
+                  //color: AppColor.normalGreen.withOpacity(0.2),
+                  color: AppColor.greyColor,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Row(
@@ -38,7 +38,7 @@ class IncomeAndExpenseWidget extends StatelessWidget {
                   children: [
                     Icon(
                       CupertinoIcons.arrow_down_left,
-                      color: AppColor.blackColor,
+                      color: AppColor.darkGreenColor,
                       size: 24.r,
                     ),
                     SizedBox(width: 10.w,),
@@ -48,7 +48,7 @@ class IncomeAndExpenseWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Funds in",
+                            "Income",
                             style: GoogleFonts.inter(
                               color: AppColor.textGreyColor,
                               fontSize: 13.sp,
@@ -58,7 +58,7 @@ class IncomeAndExpenseWidget extends StatelessWidget {
                           ),
                           SizedBox(height: 5.h,),
                           Text(
-                            "N600000.00",
+                            "N60000.00",
                             style: GoogleFonts.atma(
                               color: AppColor.blackColor,
                               fontSize: 16.sp,
@@ -80,14 +80,15 @@ class IncomeAndExpenseWidget extends StatelessWidget {
           
           //Expense Widget
           Expanded(
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {},
               child: Container(
                 alignment: Alignment.center,
                 //height: 55.h,
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                 decoration: BoxDecoration(
-                  color: AppColor.redColor.withOpacity(0.2),
+                  //color: AppColor.redColor.withOpacity(0.2),
+                  color: AppColor.greyColor,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Row(
@@ -95,7 +96,7 @@ class IncomeAndExpenseWidget extends StatelessWidget {
                   children: [
                     Icon(
                       CupertinoIcons.arrow_up_right,
-                      color: AppColor.blackColor,
+                      color: AppColor.redColor,
                       size: 24.r,
                     ),
                     SizedBox(width: 10.w,),
@@ -105,7 +106,7 @@ class IncomeAndExpenseWidget extends StatelessWidget {
                         //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Funds out",
+                            "Expenses",
                             style: GoogleFonts.inter(
                               color: AppColor.textGreyColor,
                               fontSize: 13.sp,

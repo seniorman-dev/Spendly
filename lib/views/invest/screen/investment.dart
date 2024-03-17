@@ -4,6 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spendly/utils/colors/app_theme.dart';
 import 'package:spendly/views/invest/widget/investment_options_card.dart';
+import 'package:spendly/views/invest/widget/portfolio/portfolio_empty_state.dart';
+
+
+
 
 
 
@@ -32,7 +36,7 @@ class InvestPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Invest with Spendly',
+                      'Invest with us',
                       style: GoogleFonts.inter(
                         color: AppColor.blackColor,
                         fontSize: 15.sp,
@@ -53,15 +57,15 @@ class InvestPage extends StatelessWidget {
                   children: [
                     InvestmentCard(
                       onTap: () {},
-                      title: '',
-                      sub_title: '',
-                      icon: Icons.bar_chart_rounded,
+                      title: 'Agriculture',
+                      sub_title: 'Invest in our farm produce and live stock and receive monthly interests',
+                      icon: CupertinoIcons.leaf_arrow_circlepath,
                     ),
                     SizedBox(width: 15.w,),
                     InvestmentCard(
                       onTap: () {},
-                      title: '',
-                      sub_title: '',
+                      title: 'Crypto',
+                      sub_title: 'Buy and hold BTC or USDT for a certain period and secure profits.',
                       icon: CupertinoIcons.bitcoin_circle_fill,
                     ),
                   ],
@@ -75,16 +79,16 @@ class InvestPage extends StatelessWidget {
                   children: [
                     InvestmentCard(
                       onTap: () {},
-                      title: 'Invest in energy',
-                      sub_title: '',
-                      icon:  CupertinoIcons.lightbulb_fill,
+                      title: 'Energy',
+                      sub_title: 'Invest in our solar energy products and get standard ROIs',
+                      icon:  CupertinoIcons.sun_max_fill,
                     ),
                     SizedBox(width: 15.w,),
                     InvestmentCard(
                       onTap: () {},
-                      title: '',
-                      sub_title: '',
-                      icon: Icons.bar_chart_rounded,
+                      title: 'Fixed Deposits',
+                      sub_title: 'safe lock your funds with us per annum and receive up to 20% interest',
+                      icon: CupertinoIcons.chart_pie_fill,
                     ),
                   ],
                 ),
@@ -111,6 +115,8 @@ class InvestPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.h,),
+              /////NO PORTFOLIO EMPTY STATE//////
+              PortfolioEmptyState(),
             ]
           )
         )
